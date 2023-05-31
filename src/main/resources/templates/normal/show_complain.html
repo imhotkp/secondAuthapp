@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<section>
+	<!-- <div th:if="${session.message}" class="container text-center ">
+    <div th:classappend="${session.message.type}" class="alert " role="alert">
+<span th:text="${session.message.content}"></span>
+<th:block th:text="${#session.removeAttribute('message')}"></th:block> 
+</div>
+</div>  -->
+<div class="card mr-3 ml-3">
+<div class="card-body">
+<h1 class="text-center">Your Contacts</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="c:${complain}">
+      <th scope="row" th:text="${'COM'+c.cId}">1</th>
+      
+      <td >
+      <img src="" class="my_profile_picture" alt="profile photo" th:src="@{'/images/'+${c.image}}">
+      <span th:text="${c.firstName}"></span></td>
+      
+      
+      
+      <td ><a th:href="@{'/user/'+${c.cId}+'/complain'}"><span th:text="${c.email}"></span></a></td>
+      <td th:text="${c.phone}">@mdo</td>
+         <td>
+         <a  th:onClick="|deleteComplain(${c.cId})|"  th:href="@{'/user/delete/'+${c.cId}}" class="btn btn-danger btn-small">Delete</a>
+      <form th:action="@{'/user/update-complain/'+${c.cId}}" class="mt-2" method="post">  <button  type="submit" class="btn btn-primary btn-small">Update</button>
+      </form> 
+         
+         </td>
+    </tr>
+
+  </tbody>
+</table>
+<!-- Pagination -->
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li  th:if="${currentPage != 0}"  class="page-item"><a th:href="@{'/user/show-complain/'+${currentPage-1}}" class="page-link" href="#">Previous</a></li>
+   <li th:classappend="${currentPage==i-1?'active':''}" th:each="i:${#numbers.sequence(1,totalPages)}" class="page-item"><a th:href="@{'/user/show-complain/'+${i-1}}" class="page-link" th:text="${i}" ></a></li> 
+    
+    <li th:if="${currentPage+1 !=totalPages}" class="page-item"><a th:href="@{'/user/show-complain/'+${currentPage+1}}" class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+</div>
+
+</div>
+	</section>
+	
+</body>
+</html>

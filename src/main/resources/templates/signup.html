@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Home page</title>
+</head>
+<body>
+<section>
+	<div class="container">
+	<div class="row">
+	<div class="col-md-8 offset-md-2">
+	<div class="my-card">
+	  <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+  <p th:text="${session.message.content}"></p>
+<!-- <th:block th:text="${#session.removeAttribute('message')}"></th:block>  -->
+</div>
+	<div class="container text-center">
+	<img style="width:80px" th:src="@{/images/website.png}"  />
+	</div>
+	<h1 class="text-center">Register Here</h1>
+	<form th:action="@{/register}" enctype="multipart/form-data" method="post" th:object="${user}">
+	<!-- name field begin -->
+	 <div class="form-group">
+    <label for="name_field" >UserName</label>
+    <input type="text"
+    name="name"
+    th:value="${user.name}"
+     class="form-control" 
+     id="name_field" 
+
+     aria-describedby="emailHelp" 
+     placeholder="Enter here" required 
+   />  
+  </div>
+	<!-- name field end -->
+		<!-- email field begin -->
+	 <div class="form-group">
+    <label for="email_field" >Email</label>
+    <input type="email"
+    name="email"
+     class="form-control" 
+     id="email_field" 
+     th:value="${user.email}"
+    
+     aria-describedby="emailHelp" 
+     placeholder="Enter here" required
+    />  
+  </div>
+	<!-- email field end -->
+		<!-- password field begin -->
+	 <div class="form-group">
+    <label for="password_field" >Password</label>
+    <input type="password"
+    name="password"
+     class="form-control" 
+     id="password_field" 
+     aria-describedby="emailHelp" 
+     placeholder="Enter here" required 
+       />  
+  </div>
+	<!-- password field end -->
+	<!-- user field start -->
+	<div class="form-group">
+	<textarea name="about" th:value="${abouts}"  placeholder="Enter here" rows="5" class="form-control">
+	
+	
+	</textarea>
+	
+	</div>
+	<!-- image field begins -->
+	<div class="custom-file">
+<input type="file" name="userImage" />
+
+</div>
+<!-- image field ends -->
+	<!-- user field end -->
+
+<!-- terms and condition agreement begin -->
+<div class="form-group form-check text-center">
+<input type="checkbox"
+ name="agreement"
+class="form-check-input"
+id="agreement"/>
+<label for="agreement">Accept terms and condition</label>
+</div>
+<!-- terms and condition agreement end -->
+<!-- 	button begins -->
+<div class="container text-center">
+<button type="submit" class="btn bg-primary text-white">
+submit
+</button>
+<button type="reset" class="btn bg-primary text-white">
+reset
+</button>
+<div class="container text-center mt-1">
+<a th:href="@{/signin}" class="btn bg-primary text-white">Login if already registered</a>
+</div>
+</div>
+<!-- button ends -->
+	
+	</form>
+	</div>
+	
+	</div> 	
+	</div>
+	</div>
+	</section>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Home page</title>
+</head>
+<body>
+<section>
+<div class="card mr-3 ml-3">
+<div class="card-body">
+<h1 class="text-center">Update Complain</h1>
+<div class="container-fluid mt-1">
+<div class="row">
+<div class="col-md-10 offset-md-1">
+<form action="" th:object="${complain}" enctype="multipart/form-data" method="post" th:action="@{/user/process-update}" class="mt-2">
+
+<input type="hidden" th:value="${complain.cId}" name="cId" />
+<!-- first name -->
+<div class="input-group">
+<div class="input-group-prepend">
+<div class="input-group-text mr-3">
+<i class="fa fa-plus"></i>
+
+</div>
+</div>
+<input th:value="${complain.firstName}" required type="text" id="firstName" name="firstName" placeholder="Enter Your First Name" class="form-control" />
+</div>
+<!-- first name Ended -->
+<!-- Second name -->
+<div class="input-group mt-2">
+<div class="input-group-prepend">
+<div class="input-group-text mr-3">
+<i class="fas fa-user-alt"></i>
+
+</div>
+</div>
+<input th:value="${complain.secondName}" required type="text" id="secondName" name="secondName" placeholder="Enter Your Second Name" class="form-control" />
+</div>
+<!-- Second name Ended -->
+<!-- Phone begin -->
+<div class="input-group mt-2">
+<div class="input-group-prepend">
+<div class="input-group-text mr-3">
+<i class="fa fa-phone"></i>
+
+</div>
+</div>
+<input th:value="${complain.phone}" required  type="number" id="secondName" name="phone" placeholder="Enter Your Phone Number here" class="form-control" />
+</div>
+<!-- Phone Ended -->
+<!-- Email begin -->
+<div class="input-group mt-2">
+<div class="input-group-prepend">
+<div class="input-group-text mr-3">
+<i class="fa-regular fa-envelope"></i>
+
+</div>
+</div>
+<input th:value="${complain.email}" required type="email" id="email" name="email" placeholder="Enter Your email here" class="form-control" />
+</div>
+<!-- Email Ended -->
+<!-- Grievance begin -->
+<div class="input-group mt-2">
+<div class="input-group-prepend">
+<div class="input-group-text mr-3">
+<i class="fa-sharp fa-solid fa-face-angry"></i>
+
+</div>
+</div>
+<input th:value="${complain.work}" required type="text" id="grievance" name="work" placeholder="Enter Your grievance here" class="form-control" />
+</div>
+<!--Grievance Ended -->
+<!-- Grievance Description -->
+<div class="form-group mt-2">
+<textarea th:text="${complain.description}" id="default-editor" Placeholder="Enter the description of your Grievance" name="description" class="form-control" rows="10" ></textarea>
+
+</div> 
+
+
+
+<!-- Grievance Ended -->
+<!-- image field -->
+<div class="container text-center">
+<img style="width:250px;height:250px" class="img-fluid my_profile_picture" alt="" th:src="@{'/images/'+${complain.image}}">
+</div>
+<div class="custom-file">
+<input type="file" name="profileImage" />
+
+</div>
+<!-- image field ended -->
+<div class="container text-center">
+<button class="btn btn-outline-primary">Save Complain</button>
+
+</div>
+</form>
+</div>
+
+</div>
+
+</div>
+</div></div>
+	 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+	 <script >
+	 tinymce.init({
+		  selector: 'textarea#default-editor'
+		});</script> 
+	</section>
+</body>
+</html>

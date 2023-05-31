@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Home page</title>
+</head>
+<body>
+<section>
+<div class="card mr-3 ml-3">
+<div class="card-body" th:if="${complain}">
+<div class="container text-center">
+<img src="" class="myprofilepicture" alt="profile photo" th:src="@{'/images/'+${complain.image}}">
+
+<h3 class="mt-3"><span th:text="${complain.firstName}"></span>(<span th:text="${complain.secondName}"></span>)</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#ID</th>
+      <th scope="col">COM<span th:text="${complain.cId}"></span></th>
+     
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Email</th>
+      <td><span th:text="${complain.email}"></span></td>
+     
+    </tr>
+    <tr>
+      <th scope="row">Phone</th>
+      <td><span th:text="${complain.phone}"></span></td>
+      
+    </tr>
+    <tr>
+      <th scope="row">Grievance</th>
+        <td><span th:text="${complain.work}"></span></td>
+     
+    </tr>
+    
+  </tbody>
+</table>
+<h3>Description</h3>
+<div class="description">
+<th:block th:utext="${complain.description}"></th:block>
+</div>
+<div class="container mt-3">
+ <a th:onClick="|deleteComplain(${complain.cId})|"  th:href="@{'/user/delete/'+${complain.cId}}" class="btn btn-danger btn-small">Delete</a>
+        <form th:action="@{'/user/update-complain/'+${complain.cId}}" class="mt-2" method="post">  <button  type="submit" class="btn btn-primary btn-small">Update</button>
+      </form> 
+</div>
+</div>
+
+</div>
+<h3 class="text-center p-3 bg-danger" th:unless="${complain}">You are not authorised to view this Grievance</h3>
+</div>
+	</section>
+</body>
+</html>
